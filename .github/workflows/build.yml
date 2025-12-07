@@ -15,4 +15,9 @@ jobs:
       run: git submodule update --init
     - name: Build for yggdrasil
       run: make DEVICE=yggdrasil -j$(nproc --all)
-    
+    - name: Upload to artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: device-cpio
+        path: out/*
+        if-no-files-found: error
